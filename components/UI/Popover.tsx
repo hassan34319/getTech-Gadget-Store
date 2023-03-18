@@ -3,8 +3,8 @@ import React from "react";
 import { Disclosure, Popover } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 type Props =  {
-    links_categories : {href : URL, label : String}[],
-    links_vendors :  {href : URL, label : String}[]
+    links_categories : {href : string, label : String}[],
+    links_vendors :  {href : string, label : String}[]
 }
 import Link from "next/link"
 

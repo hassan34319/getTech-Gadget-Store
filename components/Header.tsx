@@ -23,8 +23,8 @@ import { FiLogOut } from "react-icons/fi"
 // Type rfce to create component and export it with the same name as your page
 // Image component imported by next/image can be used isntead of regular img html tag and is lazy loaded by default.
 type Props = {
-  links_categories: { href: URL; label: String }[];
-  links_vendors: { href: URL; label: String }[];
+  links_categories: { href: string; label: String }[];
+  links_vendors: { href: string; label: String }[];
 };
 function Header({ links_categories, links_vendors }: Props) {
   const { data: session } = useSession();

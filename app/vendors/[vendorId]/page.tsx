@@ -1,9 +1,6 @@
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { getCategories } from "../../../utils/fetchCategories";
+
 import ShowByVendors from "../../../components/ShowByVendor";
-import { getProductsByVendor } from "../../../utils/fetchProductsByVendor";
-import Head from "next/head";
-import { useRouter } from 'next/navigation'
+
 
 const VendorPage = async({
   params,

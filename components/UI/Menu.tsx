@@ -7,7 +7,7 @@ import { motion, LayoutGroup } from "framer-motion";
 import {useRouter} from "next/navigation"
 
 type Props =  {
-    links : {href : URL, label : String}[],
+    links : {href : string, label : String}[],
     title : String
 }
 
