@@ -1,31 +1,34 @@
 
 import Landing from "../components/Landing";
 import NewPromos from "../components/HomePageProducts"
-import { groq } from "next-sanity";
-import { sanityClient } from "../sanity";
+
 const Home = async() => {
-    // const getProducts = async () => {
-    //     const res = await fetch(
-    //       `${process.env.NEXT_PUBLIC_BASE_URL}/api/getProducts`, { cache: 'no-store' }, //Sends request to your own backend API
-    //     );
+    const getProducts = async () => {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/getProducts`, { cache: 'no-store' }, //Sends request to your own backend API
+        );
       
-    //     const data = await res.json()
-    //     const products : Product[] = data.products
+        const data = await res.json()
+        const products : Product[] = data.products
       
-    //     return products
-    //   };
+        return products
+      };
 
-      // const getCategories = async () => {
-      //   const query = groq`*[_type == "category"] { _id,... }`;
-      //   const categories =  await sanityClient.fetch(query);
-    
-      //   return categories;
-      // };
+      const getCategories = async () => {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/getCategories`, { cache: 'no-store'} //Sends request to your own backend API
+        );
       
-      // const products_promise = getProducts()
-      // const categories_promise = getCategories()
+        const data = await res.json()
+        const categories : Category[] = data.categories
+      
+        return categories
+      };
+      
+      const products_promise = getProducts()
+      const categories_promise = getCategories()
 
-      // const  categories = await Promise.all([categories_promise]);
+      const [products, categories] = await Promise.all([products_promise, categories_promise]);
 
   return (
     <div className="">
@@ -46,7 +49,7 @@ const Home = async() => {
       </main>
       <section id="section-1" className="relative z-40 -mt-[100vh] min-h-screen bg-[#28282B] ">
         {/* {-mt-[100-vh] allows it to come on top as we scroll down because we have -100 margin from top} */}
-        {/* <NewPromos categories={categories} products={products}/> */}
+        <NewPromos categories={categories} products={products}/>
       </section>
     </div>
   );
