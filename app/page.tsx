@@ -4,16 +4,16 @@ import NewPromos from "../components/HomePageProducts"
 import { groq } from "next-sanity";
 import { sanityClient } from "../sanity";
 const Home = async() => {
-    const getProducts = async () => {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/getProducts`, { cache: 'no-store' }, //Sends request to your own backend API
-        );
+    // const getProducts = async () => {
+    //     const res = await fetch(
+    //       `${process.env.NEXT_PUBLIC_BASE_URL}/api/getProducts`, { cache: 'no-store' }, //Sends request to your own backend API
+    //     );
       
-        const data = await res.json()
-        const products : Product[] = data.products
+    //     const data = await res.json()
+    //     const products : Product[] = data.products
       
-        return products
-      };
+    //     return products
+    //   };
 
       const getCategories = async () => {
         const query = groq`*[_type == "category"] { _id,... }`;
@@ -46,7 +46,7 @@ const Home = async() => {
       </main>
       <section id="section-1" className="relative z-40 -mt-[100vh] min-h-screen bg-[#28282B] ">
         {/* {-mt-[100-vh] allows it to come on top as we scroll down because we have -100 margin from top} */}
-        <NewPromos categories={categories} products={products}/>
+        {/* <NewPromos categories={categories} products={products}/> */}
       </section>
     </div>
   );
