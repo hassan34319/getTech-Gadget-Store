@@ -1,7 +1,8 @@
 
 import ShowByVendors from "../../../components/ShowByVendor";
 
-
+import { groq } from "next-sanity";
+import { sanityClient } from "../../../sanity";
 const VendorPage = async({
   params,
 }: {
@@ -23,12 +24,8 @@ const VendorPage = async({
   };
 
   const getCategories = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/getCategories`, { next: { revalidate: 3600 }} //Sends request to your own backend API
-    );
-
-    const data = await res.json();
-    const categories: Category[] = data.categories;
+    const query = groq`*[_type == "category"] { _id,... }`;
+    const categories =  await sanityClient.fetch(query);
 
     return categories;
   };

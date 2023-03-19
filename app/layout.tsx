@@ -2,7 +2,6 @@ import Header from "../components/Header";
 import "../styles/globals.css";
 import { Poppins } from "next/font/google";
 import AuthContext from "./authContext";
-import type { NextApiRequest, NextApiResponse } from "next";
 import { groq } from "next-sanity";
 import { sanityClient } from "../sanity";
 type Data = {
