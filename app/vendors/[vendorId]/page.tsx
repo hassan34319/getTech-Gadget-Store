@@ -1,21 +1,20 @@
-
 import ShowByVendors from "../../../components/ShowByVendor";
 
 import { groq } from "next-sanity";
 import { sanityClient } from "../../../sanity";
-const VendorPage = async({
-  params,
-}: {
-  params: { vendorId: string };
-}) => {
+const VendorPage = async ({ params }: { params: { vendorId: string } }) => {
   const getProductsByVendor = async (query: String | undefined | String[]) => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/vendors/${query}` //Sends request to your own backend API
-    );
-
-    const data = await res.json();
-    const products: Product[] = data.productsByVendors;
-    const vendor_image = data.vendor_image;
+    const query_products = groq`*[_type == "product" && vendor._ref == "${params}"]  {
+      _id,
+        ...
+    }`;
+    const query_vendor = groq`*[_type == "vendors" && _id == "${params}"] {
+      _id,
+      title,
+      image
+    }`;
+    const products = await sanityClient.fetch(query_products);
+    const vendor_image = await sanityClient.fetch(query_vendor);
 
     return {
       products,
@@ -25,13 +24,13 @@ const VendorPage = async({
 
   const getCategories = async () => {
     const query = groq`*[_type == "category"] { _id,... }`;
-    const categories =  await sanityClient.fetch(query);
+    const categories = await sanityClient.fetch(query);
 
     return categories;
   };
 
-  const vendorId  = params.vendorId;
-  console.log(vendorId, "vendorId")
+  const vendorId = params.vendorId;
+  console.log(vendorId, "vendorId");
   const categories_promise = getCategories(); //Func made in utils
   const data_promise = getProductsByVendor(vendorId);
 

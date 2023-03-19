@@ -10,29 +10,31 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
     return vendors;
   };
 
-  const getProductsByCategory = async (query:String|undefined|String[]) => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/${query}` //Sends request to your own backend API
-    );
-  
-    const data = await res.json()
-    const products : Product[] = data.productsByCategory
-    const Category_title = data.Category_title
-  
+  const getProductsByCategory = async (
+    query: String | undefined | String[]
+  ) => {
+    const query_products = groq`*[_type == "product" && category._ref == "${query}"]  {
+      _id,
+        ...
+    }`;
+    const query_category = groq`*[_type == "category" && _id == "${query}"] {
+      _id,
+      title
+    }`;
+    const products = await sanityClient.fetch(query_products);
+    const Category_title = await sanityClient.fetch(query_category);
+
     return {
-        products,
-        Category_title
-    }
+      products,
+      Category_title,
+    };
   };
 
   const categoryId = params.categoryId;
   const vendors_promise = getVendors(); //Func made in utils
   const data_promise = getProductsByCategory(categoryId);
 
-  const [data, vendors] = await Promise.all([
-    data_promise,
-    vendors_promise,
-  ]);
+  const [data, vendors] = await Promise.all([data_promise, vendors_promise]);
   const { products } = data;
   const { Category_title } = data;
   return (
@@ -58,5 +60,3 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
 };
 
 export default CategoryPage;
-
-
