@@ -12,7 +12,7 @@ async function success({
   const getStripeProducts = async (sessionId: string) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/getSession?session_id=${sessionId}`,
-      { cache: "no-store" }
+      { cache: 'no-store', next: { revalidate: 0 } }
     );
 
     if (!res.ok) return;
