@@ -11,7 +11,8 @@ async function success({
 }) {
   const getStripeProducts = async (sessionId: string) => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/getSession?session_id=${sessionId}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/getSession?session_id=${sessionId}`,
+      { cache: "no-store" }
     );
 
     if (!res.ok) return;
@@ -25,9 +26,9 @@ async function success({
   const session_id = (searchParams?.session_id as string) || "none";
   const products = await getStripeProducts(session_id!);
 
-
   const totalAmount = products.reduce(
-    (acc : number, product : StripeProduct) => acc + product.price.unit_amount / 100,
+    (acc: number, product: StripeProduct) =>
+      acc + product.price.unit_amount / 100,
     0
   );
   let USDollar = new Intl.NumberFormat("en-US", {
@@ -57,7 +58,7 @@ async function success({
           </h1>
           <p className="my-4">Free delivery and free returns.</p>
           <div className="mx-5 md:mx-8">
-            {products.map((product : StripeProduct) => (
+            {products.map((product: StripeProduct) => (
               <div
                 key={product.id}
                 className="flex flex-col gap-x-4 border-b border-black pb-5 lg:flex-row lg:items-center"
