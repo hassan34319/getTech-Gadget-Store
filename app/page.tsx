@@ -15,17 +15,17 @@ const Home = async() => {
     //     return products
     //   };
 
-      const getCategories = async () => {
-        const query = groq`*[_type == "category"] { _id,... }`;
-        const categories =  await sanityClient.fetch(query);
+      // const getCategories = async () => {
+      //   const query = groq`*[_type == "category"] { _id,... }`;
+      //   const categories =  await sanityClient.fetch(query);
     
-        return categories;
-      };
+      //   return categories;
+      // };
       
       // const products_promise = getProducts()
-      const categories_promise = getCategories()
+      // const categories_promise = getCategories()
 
-      const  categories = await Promise.all([categories_promise]);
+      // const  categories = await Promise.all([categories_promise]);
 
   return (
     <div className="">
