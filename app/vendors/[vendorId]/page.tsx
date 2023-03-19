@@ -2,6 +2,7 @@ import ShowByVendors from "../../../components/ShowByVendor";
 
 import { groq } from "next-sanity";
 import { sanityClient } from "../../../sanity";
+export const revalidate = 3600
 const VendorPage = async ({ params }: { params: { vendorId: string } }) => {
   const getProductsByVendor = async (query: String | undefined | String[]) => {
     const query_products = groq`*[_type == "product" && vendor._ref == "${query}"]  {

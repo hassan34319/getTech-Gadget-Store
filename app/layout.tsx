@@ -7,7 +7,6 @@ import { sanityClient } from "../sanity";
 type Data = {
   categories: Category[]; //Category Type is created in typings.d.ts. Due to that file name we do not need to import or export that file.
 };
-
 // If loading a variable font, you don't need to specify the font weight
 const poppins = Poppins({
   display: "swap",
@@ -15,6 +14,7 @@ const poppins = Poppins({
   subsets: ["latin", "devanagari", "latin-ext"],
   variable: "--font-poppins",
 });
+export const revalidate = 3600
 export default async function RootLayout({
   // Layouts must accept a children prop.
   // This will be populated with nested layouts or pages

@@ -2,6 +2,7 @@ import Landing from "../components/Landing";
 import NewPromos from "../components/HomePageProducts";
 import { groq } from "next-sanity";
 import { sanityClient } from "../sanity";
+export const revalidate = 3600
 
 const Home = async () => {
   const getProducts = async () => {

@@ -2,6 +2,7 @@ import ShowByCategories from "../../components/ShowByCategory";
 import Head from "next/head";
 import { groq } from "next-sanity";
 import { sanityClient } from "../../sanity";
+export const revalidate = 3600
 const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
   const getVendors = async () => {
     const query = groq`*[_type == "vendors"] { _id,... }`;
