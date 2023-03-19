@@ -22,10 +22,10 @@ const Home = async() => {
         return categories;
       };
       
-      const products_promise = getProducts()
+      // const products_promise = getProducts()
       const categories_promise = getCategories()
 
-      const [products, categories] = await Promise.all([products_promise, categories_promise]);
+      const  categories = await Promise.all([categories_promise]);
 
   return (
     <div className="">
