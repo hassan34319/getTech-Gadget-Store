@@ -1,7 +1,7 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 
 import SuccessDisclosure from "../../components/successDisclosure";
-
+export const dynamic = 'force-dynamic'
 async function success({
   params,
   searchParams,
@@ -11,7 +11,7 @@ async function success({
 }) {
   const getStripeProducts = async (sessionId: string) => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/getSession?session_id=${sessionId}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/getSession?session_id=${sessionId}`,
     );
 
     if (!res.ok) return;
