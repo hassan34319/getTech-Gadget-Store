@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import AuthContext from "./authContext";
 import { groq } from "next-sanity";
 import { sanityClient } from "../sanity";
+import { cache } from 'react';
 type Data = {
   categories: Category[]; //Category Type is created in typings.d.ts. Due to that file name we do not need to import or export that file.
 };
@@ -22,18 +23,18 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const getVendors = async () => {
+  const getVendors = cache(async () => {
     const query = groq`*[_type == "vendors"] { _id,... }`;
     const vendors: Vendor[] = await sanityClient.fetch(query);
 
     return vendors;
-  };
-  const getCategories = async () => {
+  });
+  const getCategories = cache(async () => {
     const query = groq`*[_type == "category"] { _id,... }`;
     const categories =  await sanityClient.fetch(query);
 
     return categories;
-  };
+  });
   const categories_promise = getCategories();
   const vendors_promise = getVendors();
   const [vendors, categories] = await Promise.all([

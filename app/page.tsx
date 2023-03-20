@@ -2,6 +2,7 @@ import Landing from "../components/Landing";
 import NewPromos from "../components/HomePageProducts";
 import { groq } from "next-sanity";
 import { sanityClient } from "../sanity";
+import { cache } from "react";
 export const revalidate = 3600
 
 const Home = async () => {
@@ -15,12 +16,12 @@ const Home = async () => {
     return products;
   };
 
-  const getCategories = async () => {
+  const getCategories = cache(async () => {
     const query = groq`*[_type == "category"] { _id,... }`;
-    const categories = await sanityClient.fetch(query);
+    const categories =  await sanityClient.fetch(query);
 
     return categories;
-  };
+  });
 
   const products_promise = getProducts();
   const categories_promise = getCategories();

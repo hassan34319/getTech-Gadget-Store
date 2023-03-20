@@ -99,8 +99,8 @@ interface StripeProduct {
   currency: string;
   description: string;
   object: string;
-  quantity: number;
+  quantity: number | null;
   price: {
     unit_amount: number;
-  };
+  } | null;
 }

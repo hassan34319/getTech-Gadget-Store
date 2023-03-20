@@ -2,14 +2,15 @@ import ShowByCategories from "../../components/ShowByCategory";
 import Head from "next/head";
 import { groq } from "next-sanity";
 import { sanityClient } from "../../sanity";
+import { cache } from "react";
 export const revalidate = 3600
 const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
-  const getVendors = async () => {
+  const getVendors = cache(async () => {
     const query = groq`*[_type == "vendors"] { _id,... }`;
     const vendors: Vendor[] = await sanityClient.fetch(query);
 
     return vendors;
-  };
+  });
 
   const getProductsByCategory = async (
     query: String | undefined | String[]

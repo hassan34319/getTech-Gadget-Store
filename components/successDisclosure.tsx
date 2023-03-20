@@ -22,7 +22,7 @@ function SuccessDisclosure({ products, session_id }: Props) {
   });
   
   const totalAmount = products.reduce(
-    (acc, product) => acc + product.price.unit_amount / 100,
+    (acc, product) => acc + product.price!.unit_amount / 100,
     0
   );
   const { data: session } = useSession()
@@ -98,7 +98,7 @@ function SuccessDisclosure({ products, session_id }: Props) {
                           </div>
                           <div className="flex flex-col items-end space-y-4">
                             <h4 className="text-xl font-semibold ">
-                              {USDollar.format(product.price.unit_amount / 100)}
+                              {USDollar.format(product.price!.unit_amount / 100)}
                             </h4>
                           </div>
                         </div>

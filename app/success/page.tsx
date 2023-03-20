@@ -28,7 +28,7 @@ async function success({
 
   const totalAmount = products.reduce(
     (acc: number, product: StripeProduct) =>
-      acc + product.price.unit_amount / 100,
+      acc + product!.price!.unit_amount / 100,
     0
   );
   let USDollar = new Intl.NumberFormat("en-US", {
@@ -87,7 +87,7 @@ async function success({
                   </div>
                   <div className="flex flex-col items-end space-y-4">
                     <h4 className="text-xl font-semibold ">
-                      {USDollar.format(product.price.unit_amount / 100)}
+                      {USDollar.format(product.price!.unit_amount / 100)}
                     </h4>
                   </div>
                 </div>

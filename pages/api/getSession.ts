@@ -4,7 +4,7 @@ const stripe: Stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse 
 ) {
   const sessionId = req.query.session_id as string;
 

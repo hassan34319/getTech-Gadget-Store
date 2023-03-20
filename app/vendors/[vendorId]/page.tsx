@@ -2,6 +2,7 @@ import ShowByVendors from "../../../components/ShowByVendor";
 
 import { groq } from "next-sanity";
 import { sanityClient } from "../../../sanity";
+import { cache } from "react";
 export const revalidate = 3600
 const VendorPage = async ({ params }: { params: { vendorId: string } }) => {
   const getProductsByVendor = async (query: String | undefined | String[]) => {
@@ -23,12 +24,12 @@ const VendorPage = async ({ params }: { params: { vendorId: string } }) => {
     };
   };
 
-  const getCategories = async () => {
+  const getCategories = cache(async () => {
     const query = groq`*[_type == "category"] { _id,... }`;
-    const categories = await sanityClient.fetch(query);
+    const categories =  await sanityClient.fetch(query);
 
     return categories;
-  };
+  });
 
   const vendorId = params.vendorId;
   console.log(vendorId, "vendorId");
