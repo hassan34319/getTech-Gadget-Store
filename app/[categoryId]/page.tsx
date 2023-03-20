@@ -62,3 +62,8 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
 };
 
 export default CategoryPage;
+
+export const metadata = {
+  title: 'Categories',
+  description : 'One Stop Solution For Gadget Shopping'
+}

@@ -66,3 +66,8 @@ const VendorPage = async ({ params }: { params: { vendorId: string } }) => {
 };
 
 export default VendorPage;
+
+export const metadata = {
+  title: 'Brands',
+  description : 'One Stop Solution For Gadget Shopping'
+}

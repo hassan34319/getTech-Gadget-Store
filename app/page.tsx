@@ -73,3 +73,8 @@ export default Home;
 //     },
 //   };
 // };
+
+export const metadata = {
+  title: 'GETECH',
+  description : 'One Stop Solution For Gadget Shopping'
+}

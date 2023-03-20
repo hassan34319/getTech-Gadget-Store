@@ -68,3 +68,10 @@ export default async function RootLayout({
     </html>
   );
 }
+
+export const metadata = {
+  icons: {
+    icon: '/my_logo.png',
+  },
+  title : 'GETTECH'
+};
