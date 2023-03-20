@@ -3,7 +3,7 @@ import NewPromos from "../components/HomePageProducts";
 import { groq } from "next-sanity";
 import { sanityClient } from "../sanity";
 import { cache } from "react";
-export const revalidate = 3600
+export const revalidate = 60
 
 const Home = async () => {
   const getProducts = async () => {
