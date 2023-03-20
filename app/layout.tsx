@@ -73,5 +73,5 @@ export const metadata = {
   icons: {
     icon: '/my_logo.png',
   },
-  title : 'GETTECH'
+  title : 'GetTech'
 };

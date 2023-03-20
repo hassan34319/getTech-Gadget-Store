@@ -69,5 +69,5 @@ export default VendorPage;
 
 export const metadata = {
   title: 'Brands',
-  description : 'One Stop Solution For Gadget Shopping'
+  description : 'Explore our brands such as Samsung, Apple, Xiaomi and Infinix'
 }

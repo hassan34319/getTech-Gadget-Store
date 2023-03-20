@@ -65,5 +65,5 @@ export default CategoryPage;
 
 export const metadata = {
   title: 'Categories',
-  description : 'One Stop Solution For Gadget Shopping'
+  description : 'Explore Tablets, Phones, Laptops and Watches all on GET-TECH'
 }
